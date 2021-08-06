@@ -7,10 +7,16 @@
     <%= f.text_field :title, :size => 100 %>
   </div>
 
-   <%# 内容 %>
+  <%# 内容 %>
   <div class="field">
     <%= f.label :body %>
     <%= f.text_field :body, :size => 140 %>
+  </div>
+
+  <%# 画像 %>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
   </div>
 
   <%= f.submit "投稿する" %>
