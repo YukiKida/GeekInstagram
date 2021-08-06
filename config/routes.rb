@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'imgposts/new' => 'imgposts#new'
   get 'imgposts/:id' => 'imgposts#show', as: 'imgpost'
   post 'imgposts' => 'imgposts#create'
+  patch 'imgposts/:id' => 'imgposts#update'
+  delete 'imgposts/:id' => 'imgposts#destroy'
+  get 'imgposts/:id/edit' => 'imgposts#update', as: 'edit_imgpost'
   root 'top#index'
   
 end

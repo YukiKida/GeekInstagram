@@ -8,6 +8,9 @@
       <%= t.title %>
       <%= t.body %>
       <%= t.created_at %>
+      <%= link_to "詳細へ", imgpost_path(t.id) %>
+      <%= link_to "編集する", edit_imgpost_path(t.id) %>
+      <%= button_to "削除する", imgpost_path(t.id), method: :delete %>
     </div>
   <% end %>
 </div>

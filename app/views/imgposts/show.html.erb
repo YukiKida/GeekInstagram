@@ -1,0 +1,9 @@
+<h1>GeekInstagram</h1>
+<h3>詳細</h3>
+<div class="imgpost">
+  <p><%= @imgpost.body %></p>
+  <p><%= @imgpost.created_at %></p>
+</div>
+<%= link_to "編集する", edit_imgpost_path(@imgpost.id) %>
+
+<%= link_to "トップへ戻る", imgposts_path %>
