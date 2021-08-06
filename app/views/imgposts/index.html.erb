@@ -12,6 +12,7 @@
 <div class="imgposts-container">
   <% @imgposts.each do |t| %>
     <div class="imgpost">
+      <%= t.user.email %>
       <%= image_tag t.image_url, size: "250x250" if t.image? %>
       <%= t.title %>
       <%= t.body %>

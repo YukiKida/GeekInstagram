@@ -18,6 +18,7 @@ class ImgpostsController < ApplicationController
 
   def create
     imgpost = Imgpost.new(imgpost_params)
+    imgpost.user_id = current_user.id
     if imgpost.save
       redirect_to :action => "index"
     else
