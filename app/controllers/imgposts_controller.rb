@@ -3,7 +3,13 @@ class ImgpostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @imgposts = Imgpost.all
+    if params[:search] == nil
+      @imgposts = Imgpost.all
+    elsif params[:search] == ''
+      @imgposts = Imgpost.all
+    else
+      @imgposts = Imgpost.where("body LIKE ? ", '%' + params[:search] + '%')
+    end
   end
 
   def new

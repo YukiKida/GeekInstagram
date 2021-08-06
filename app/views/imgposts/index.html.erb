@@ -1,5 +1,12 @@
 <h1>GeekInstagram</h1>
 <h3>投稿一覧</h3>
+
+<h3>投稿を検索</h3>
+<%= form_tag({controller: "imgposts", action: "index"}, method: :get ) do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索する'  %>
+<% end %>
+
 <%= link_to "新規投稿ページへ", imgposts_new_path %>
 
 <div class="imgposts-container">
