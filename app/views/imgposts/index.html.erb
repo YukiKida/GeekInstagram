@@ -1,0 +1,14 @@
+<h1>GeekInstagram</h1>
+<h3>投稿一覧</h3>
+<%= link_to "新規投稿ページへ", imgposts_new_path %>
+
+<div class="imgposts-container">
+  <% @imgposts.each do |t| %>
+    <div class="imgpost">
+      <%= t.title %>
+      <%= t.body %>
+      <%= t.created_at %>
+    </div>
+  <% end %>
+</div>
+<%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
