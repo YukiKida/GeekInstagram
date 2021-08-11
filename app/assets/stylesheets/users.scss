@@ -1,13 +1,18 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.signup-section,
 .login-section{
   width: 100%;
   text-align: center;
 }
+.signup-title{
+  margin-top: 50px;
+}
 .login-title{
   margin-top: 100px;
 }
+.signup-title-icon,
 .login-title-icon{
   color: #00acee;
   font-size: 44px;
@@ -45,6 +50,9 @@
   padding: 10px 120px;
   border-radius: 25px;
   transition: all .5s;
+}
+.login-link{
+  margin-top: 10px;
 }
 .inline-block{
   display: inline-block;
