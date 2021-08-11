@@ -1,3 +1,56 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.login-section{
+  width: 100%;
+  text-align: center;
+}
+.login-title{
+  margin-top: 100px;
+}
+.login-title-icon{
+  color: #00acee;
+  font-size: 44px;
+}
+.field{
+  padding-top: 50px;
+}
+.text-form{
+  width: 500px;
+  background-color: #f2f2f2;
+  padding: 15px 10px;
+  outline: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid #888;
+  transition: all .5s;
+  font-weight: bold;
+}
+.text-form:focus{
+  border-bottom: 2px solid #00acee;
+}
+.text-form::placeholder{
+  color: #00acee;
+}
+.actions{
+  margin-top: 40px;
+}
+.submit-btn {
+  width: 500px;
+  text-decoration: none;
+  border: 1px solid #00acee;
+  background-color: #00acee;
+  color: #fff;
+  padding: 10px 120px;
+  border-radius: 25px;
+  transition: all .5s;
+}
+.inline-block{
+  display: inline-block;
+  padding: 10px 10px 0 10px;
+}
+.link-text {
+  text-decoration: none;
+  color: #00acee;
+}
