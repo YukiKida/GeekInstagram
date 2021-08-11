@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_06_211302) do
+ActiveRecord::Schema.define(version: 2021_08_11_023159) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id", null: false
+    t.integer "imgpost_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["imgpost_id"], name: "index_comments_on_imgpost_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "imgposts", force: :cascade do |t|
     t.text "title"
@@ -19,6 +29,15 @@ ActiveRecord::Schema.define(version: 2021_08_06_211302) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "imgpost_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["imgpost_id"], name: "index_likes_on_imgpost_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,4 +52,8 @@ ActiveRecord::Schema.define(version: 2021_08_06_211302) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "imgposts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "likes", "imgposts"
+  add_foreign_key "likes", "users"
 end

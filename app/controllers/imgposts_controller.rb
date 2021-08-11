@@ -28,6 +28,8 @@ class ImgpostsController < ApplicationController
 
   def show
     @imgpost = Imgpost.find(params[:id])
+    @comments = @imgpost.comments
+    @comment = Comment.new
   end
 
   def edit

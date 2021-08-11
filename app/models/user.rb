@@ -4,6 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :imgposts
+  has_many :imgposts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_imgposts, through: :likes, source: :imgpost
+  has_many :comments, dependent: :destroy
+
+  def already_liked?(imgpost)
+    self.likes.exists?(imgpost_id: imgpost.id)
+  end
   
 end

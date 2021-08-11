@@ -1,9 +1,53 @@
 <h1>GeekInstagram</h1>
 <h3>詳細</h3>
 <div class="imgpost">
+  <p><%= @imgpost.title %></p>
   <p><%= @imgpost.body %></p>
+  <p><%= image_tag @imgpost.image_url, size: "250x250" if @imgpost.image? %></p>
   <p><%= @imgpost.created_at %></p>
+
+  <% if user_signed_in? %>
+      <% if current_user.already_liked?(@imgpost) %>
+          <%= link_to imgpost_like_path(@imgpost), method: :delete do %>
+              <i class="fas fa-heart"></i><%= @imgpost.likes.count %>
+          <% end %>
+      <% else %>
+          <%= link_to imgpost_likes_path(@imgpost), method: :post do %>
+              <i class="far fa-heart"></i><%= @imgpost.likes.count %>
+          <% end %>
+      <% end %>
+  <% else %>
+      <i class="far fa-heart"></i><%= @imgpost.likes.count %>
+  <% end %>
 </div>
+
+<h2>いいねしたユーザー</h2>
+<% @imgpost.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+
+<div class="comment-wrapper">
+  <p>コメント一覧</p>
+  <% @comments.each do |c| %>
+    <div>
+      <%= c.user.email unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+    </div>
+      <br>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@imgpost, @comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+
 <%= link_to "編集する", edit_imgpost_path(@imgpost.id) %>
 
 <%= link_to "トップへ戻る", imgposts_path %>
