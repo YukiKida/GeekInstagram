@@ -1,2 +1,18 @@
-<%= link_to "ログイン", imgposts_path %>
-<%= link_to "新規登録", new_user_registration_path %>
+<div class="top-section">
+  <div class="top-inner">
+    <div class="top-title">
+      <p class="top-title-icon"><i class="fas fa-door-open"></i></p>
+      <h1 class="top-title-text">GeekInstagramへようこそ</h1>
+    </div>
+    <div class="top-item">
+      <%= link_to "ログイン", imgposts_path , class: 'login-btn' %>
+    </div>
+    <div class="top-item">
+      <p>or</p>
+    </div>
+    <div class="top-item">
+      <%= link_to "新規登録", new_user_registration_path , class: 'signup-btn' %>
+    </div>
+  </div>
+</div>
+

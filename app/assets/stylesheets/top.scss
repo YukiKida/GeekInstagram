@@ -1,3 +1,48 @@
 // Place all the styles related to the top controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.top-section{
+  width: 100%;
+  text-align: center;
+}
+.top-inner{
+  padding-top: 200px;
+}
+.top-title{
+  margin-bottom: 75px;
+}
+.top-title-icon{
+  font-size: 36px;
+  color: #00acee;
+  margin-bottom: 0;
+}
+.top-title-text{
+  font-size: 24px;
+  color: #555;
+}
+.login-btn{
+  text-decoration: none;
+  border: 1px solid #00acee;
+  background-color: #00acee;
+  color: #fff;
+  padding: 10px 120px;
+  border-radius: 25px;
+  transition: all .5s;
+}
+.login-btn:hover{
+  background-color: #fff;
+  color: #00acee;
+}
+.signup-btn{
+  text-decoration: none;
+  border: 1px solid #4C64D3;
+  background-color: #4C64D3;
+  color: #fff;
+  padding: 10px 120px;
+  border-radius: 25px;
+  transition: all .5s;
+}
+.signup-btn:hover{
+  background-color: #fff;
+  color: #4C64D3;
+}
