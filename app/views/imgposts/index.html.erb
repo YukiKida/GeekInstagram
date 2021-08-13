@@ -25,72 +25,50 @@
       <% end %>
     </div>
   </nav>
-  
+
   <br>
 
   <h3 class="imgpost-title">投稿一覧</h3>
 
-  <%= link_to "新規投稿ページへ", new_imgpost_path %>
+  <p class="text-center"><%= link_to "新規投稿ページへ", new_imgpost_path, class: 'btn btn-primary' %></p>
 
 
-<div class="container">
-  <div class="row">
-    <% @imgposts.each do |t| %>
-      <div class="col-sm-6">
-        <div class="card" style="width: 18rem;">
-          <%= image_tag t.image_url, class: "card-img-top imgpost-image" if t.image? %>
-          <div class="card-body">
-            <h5 class="card-title"><%= t.title %></h5>
-            <p class="card-text"><%= t.body %></p>
-            <% if user_signed_in? %>
-              <% if current_user.already_liked?(t) %>
-                <%= link_to imgpost_like_path(id: t.id, imgpost_id: t.id), method: :delete do %>
-                <i class="far fa-heart"></i><%= t.likes.count %>
+  <div class="container">
+    <div class="row">
+      <% @imgposts.each do |t| %>
+        <div class="text-center col-sm-4 col-md-6">
+          <div class="card mx-auto mb-5" style="width: 18rem;">
+            <%# 画像部分 %>
+            <%= image_tag t.image_url, class: "card-img-top imgpost-image" if t.image? %>
+            <div class="card-body">
+              <%# タイトル部分 %>
+              <h5 class="card-title"><%= t.title %></h5>
+
+              <%# 投稿内容部分 %>
+              <p class="card-text"><%= t.body %></p>
+
+              <%# いいね部分 %>
+              <% if user_signed_in? %>
+                <% if current_user.already_liked?(t) %>
+                  <%= link_to imgpost_like_path(id: t.id, imgpost_id: t.id), method: :delete do %>
+                  <i class="far fa-heart"></i><%= t.likes.count %>
+                  <% end %>
+                <% else %>
+                  <%= link_to imgpost_likes_path(id: t.id, imgpost_id: t.id), method: :post do %>
+                  <i class="far fa-heart"></i><%= t.likes.count %>
+                  <% end %>
                 <% end %>
               <% else %>
-                <%= link_to imgpost_likes_path(id: t.id, imgpost_id: t.id), method: :post do %>
                 <i class="far fa-heart"></i><%= t.likes.count %>
-                <% end %>
               <% end %>
-            <% else %>
-              <i class="far fa-heart"></i><%= t.likes.count %>
-            <% end %>
-            <br>
-            <%= link_to "詳細へ", imgpost_path(t.id) , class: "btn btn-primary" %>
+              <br>
+              <p class="card-text"><%= link_to "詳細へ", imgpost_path(t.id) , class: "btn btn-link" %></p>
+              <p class="card-text"><%= link_to "編集する", edit_imgpost_path(t.id), class: "btn btn-primary" %></p>
+              <p class="card-text"><%= button_to "削除する", imgpost_path(t.id), method: :delete , class: "btn btn-info" %></p>
+            </div>
           </div>
         </div>
-        <%= image_tag t.image_url, size: "250x250" if t.image? %>
-        <div>
-          <%= t.user.email %>
-        </div>
-        <div>
-          <%= t.title %>
-        </div>
-        <div>
-          <%= t.body %>
-        </div>
-        <% if user_signed_in? %>
-          <% if current_user.already_liked?(t) %>
-              <%= link_to imgpost_like_path(id: t.id, imgpost_id: t.id), method: :delete do %>
-                  <i class="far fa-heart"></i><%= t.likes.count %>
-              <% end %>
-          <% else %>
-              <%= link_to imgpost_likes_path(id: t.id, imgpost_id: t.id), method: :post do %>
-                  <i class="far fa-heart"></i><%= t.likes.count %>
-              <% end %>
-          <% end %>
-        <% else %>
-          <i class="far fa-heart"></i><%= t.likes.count %>
-        <% end %>
-        <br>
-        <%= t.created_at %>
-        <%= link_to "詳細へ", imgpost_path(t.id) , class: "btn btn-primary" %>
-        <%= link_to "編集する", edit_imgpost_path(t.id), class: "btn btn-primary" %>
-        <%= button_to "削除する", imgpost_path(t.id), method: :delete , class: "btn btn-info" %>
-      </div>
-    <% end %>
-  
+      <% end %>
+    </div>
   </div>
-</div>
-
 </div>

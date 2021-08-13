@@ -1,25 +1,24 @@
-<h1>マイページ</h1>
-<%= image_tag @user.image_url, size: "250x250" if @user.image? %>
-<p>名前 : <%= @user.name %></p>
-<p>メールアドレス : <%= @user.email %></p>
-<p>プロフィール : <%= @user.profile %></p>
+<div class="text-center">
+  <h1 class="mypage-title">マイページ</h1>
+  <div class="profile">
+    <%= image_tag @user.image_url if @user.image? %>
+    <p>名前 : <%= @user.name %></p>
+    <p>メールアドレス : <%= @user.email %></p>
+    <p>プロフィール : <%= @user.profile %></p>
+  </div>
 
-<% if current_user.id == @user.id %>
-  <%= link_to "編集する", edit_user_registration_path %>
-<% end %>
+  <% if current_user.id == @user.id %>
+    <%= link_to "編集する", edit_user_registration_path , class: 'btn btn-primary' %>
+  <% end %>
 
-<h2>ユーザーの投稿一覧</h2>
-<% @user.imgposts.each do |t| %>
-  <%= t.user.name %>
-  <%= t.body %>
-<% end %>
+  <h2 class="mypage-title">ユーザーの投稿一覧</h2>
+  <% @user.imgposts.each do |t| %>
+    <div class="py-3">
+      <p class="font-weight-bold"><%= t.title %></p>
+      <%= t.body %>
+    </div>
+  <% end %>
 
-<!-- 以下はいいね機能を実装している場合-->
-<h2>ユーザーがいいねした投稿一覧</h2>
-<% @user.liked_imgposts.each do |t| %>
-  <%= t.user.name %>
-  <%= t.body %>
-<% end %>
-<!-- ここまで-->
-
-<%= link_to "一覧に戻る", imgposts_path %>
+  <br>
+  <p><%= link_to "一覧に戻る", imgposts_path , class: 'btn btn-link' %></p>
+</div>

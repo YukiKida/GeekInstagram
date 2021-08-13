@@ -1,25 +1,29 @@
-<h1>GeekInstagram</h1>
-<h3>新規投稿</h3>
-<%= form_for @imgpost do |f| %>
-  <%# タイトル %>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title, :size => 100 %>
-  </div>
+<div class="new-section">
+  <h1>GeekInstagram</h1>
+  <h3 class="text-primary">新規投稿</h3>
+  
+  <%# 投稿部分 %>
+  <%= form_for @imgpost do |f| %>
+    <%# タイトル %>
+    <div class="form-group">
+      <%= f.label :"タイトル" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
 
-  <%# 内容 %>
-  <div class="field">
-    <%= f.label :body %>
-    <%= f.text_field :body, :size => 140 %>
-  </div>
+    <%# 内容 %>
+    <div class="form-group">
+      <%= f.label :"内容" %>
+      <%= f.text_field :body, class: "form-control" %>
+    </div>
 
-  <%# 画像 %>
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
+    <%# 画像 %>
+    <div class="form-group">
+      <%= f.label :"画像" %>
+      <%= f.file_field :image , class: "form-control-file text-center" %>
+    </div>
 
-  <%= f.submit "投稿する" %>
-<% end %>
-<%= link_to "トップへ戻る", imgposts_path %>
+    <%= f.submit "投稿する" , class: 'btn btn-primary' %>
+  <% end %>
+  <%= link_to "トップへ戻る", imgposts_path %>
+</div>
   
