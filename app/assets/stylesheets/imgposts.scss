@@ -1,3 +1,56 @@
 // Place all the styles related to the imgposts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.imgpost-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 100px;
+  align-items: center;
+}
+.header-title{
+  font-size: 24px;
+  color: #231F20;
+}
+.search-title{
+  font-size: 16px;
+  color: #231f20;
+}
+.search-box{
+  background-color: #fafafa;
+}
+.logout-btn{
+  width: 200px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  background-color: #00acee;
+  color: #fff;
+  border: 1px solid #00acee;
+  transition: all .5s;
+}
+.logout-btn:hover{
+  background-color: #fff;
+  color: #00acee;
+}
+.mypage-to-btn{
+  width: 200px;
+  padding: 5px 40px;
+  border-radius: 20px;
+  background-color: #4C64D3;
+  color: #fff;
+  border: 1px solid #4C64D3;
+  transition: all .5s;
+  text-decoration: none;
+}
+.mypage-to-btn:hover{
+  background-color: #fff;
+  color: #4C64D3;
+}
+.imgpost-title{
+  text-align: center;
+  font-size: 24px;
+}
+.imgpost-image{
+
+  object-fit: cover;
+}

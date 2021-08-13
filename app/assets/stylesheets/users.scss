@@ -2,14 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .signup-section,
-.login-section{
+.login-section,
+.password-section{
   width: 100%;
   text-align: center;
 }
 .signup-title{
   margin-top: 50px;
 }
-.login-title{
+.login-title,
+.password-title{
   margin-top: 100px;
 }
 .signup-title-icon,

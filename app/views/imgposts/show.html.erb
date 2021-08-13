@@ -1,53 +1,82 @@
-<h1>GeekInstagram</h1>
-<h3>詳細</h3>
-<div class="imgpost">
-  <p><%= @imgpost.title %></p>
-  <p><%= @imgpost.body %></p>
-  <p><%= image_tag @imgpost.image_url, size: "250x250" if @imgpost.image? %></p>
-  <p><%= @imgpost.created_at %></p>
+<div class="detail-section">
 
-  <% if user_signed_in? %>
-      <% if current_user.already_liked?(@imgpost) %>
-          <%= link_to imgpost_like_path(@imgpost), method: :delete do %>
-              <i class="fas fa-heart"></i><%= @imgpost.likes.count %>
-          <% end %>
-      <% else %>
-          <%= link_to imgpost_likes_path(@imgpost), method: :post do %>
-              <i class="far fa-heart"></i><%= @imgpost.likes.count %>
-          <% end %>
-      <% end %>
-  <% else %>
-      <i class="far fa-heart"></i><%= @imgpost.likes.count %>
-  <% end %>
-</div>
+  <%# ヘッダー部分 %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="http://localhost:3000/imgposts"><h1 class="header-title">GeekInstagram</h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
 
-<h2>いいねしたユーザー</h2>
-<% @imgpost.liked_users.each do |user| %>
-  <li><%= user.email %></li>
-<% end %>
-
-<div class="comment-wrapper">
-  <p>コメント一覧</p>
-  <% @comments.each do |c| %>
-    <div>
-      <%= c.user.email unless c.user.blank? %>
-      <br>
-      <%= c.content %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="http://localhost:3000/imgposts">ホーム <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "マイページ", user_path(current_user.id) , class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= button_to 'ログアウト', destroy_user_session_path, method: :delete , class: 'nav-link btn btn-light' %>
+        </li>
+      </ul>
     </div>
-      <br>
-  <% end %>
+  </nav>
 
-  <% if user_signed_in? %>
-    <%= form_with(model: [@imgpost, @comment], local: true) do |f| %>
-      <%= f.text_area :content %>
-      <%= button_tag type: "submit" do %>
-        <i class="far fa-comments"></i> コメントする
-      <% end %>
-    <% end %>
-  <% end %>
+  <%# 詳細部分 %>
+  <h3 class="text-center">詳細</h3>
+
+  <div class="card mb-3">
+    <%= image_tag @imgpost.image_url, width: "50%", height: "50%" if @imgpost.image? %>
+    <div class="card-body">
+      <h5 class="card-title"><%= @imgpost.title %></h5>
+      <p class="card-text"><%= @imgpost.body %></p>
+      <p class="card-text"><small class="text-muted"><%= @imgpost.created_at %></small></p>
+      <p class="card-text">
+        <% if user_signed_in? %>
+          <% if current_user.already_liked?(@imgpost) %>
+              <%= link_to imgpost_like_path(@imgpost), method: :delete do %>
+                  <i class="fas fa-heart"></i><%= @imgpost.likes.count %>
+              <% end %>
+          <% else %>
+              <%= link_to imgpost_likes_path(@imgpost), method: :post do %>
+                  <i class="far fa-heart"></i><%= @imgpost.likes.count %>
+              <% end %>
+          <% end %>
+        <% else %>
+          <i class="far fa-heart"></i><%= @imgpost.likes.count %>
+        <% end %>
+      </p>
+      <p class="card-text">いいねしたユーザー</p>
+      <p class="card-text">
+        <% @imgpost.liked_users.each do |user| %>
+          <li><%= user.email %></li>
+        <% end %>
+      </p>
+      <p class="card-text">コメント一覧</p>
+      <p class="card-text">
+        <% @comments.each do |c| %>
+          <div>
+            <%= c.user.email unless c.user.blank? %>
+            <br>
+            <%= c.content %>
+          </div>
+          <br>
+        <% end %> 
+        <% if user_signed_in? %>
+          <%= form_with(model: [@imgpost, @comment], local: true) do |f| %>
+            <%= f.text_area :content , class: 'form-control' %>
+            <%= button_tag type: "submit" , class: 'btn btn-primary mt-3' do %>
+              <i class="far fa-comments"></i> コメントする
+            <% end %>
+          <% end %>
+        <% end %>    
+      </p>
+      <p class="card-text">
+        <%= link_to "編集する", edit_imgpost_path(@imgpost.id) , class: 'btn btn-primary' %>
+      </p>
+      <p class="card-text">
+        <%= link_to "トップへ戻る", imgposts_path , class: "btn btn-secondary" %>
+      </p>
+    </div>
+  </div>
 </div>
-
-
-<%= link_to "編集する", edit_imgpost_path(@imgpost.id) %>
-
-<%= link_to "トップへ戻る", imgposts_path %>
