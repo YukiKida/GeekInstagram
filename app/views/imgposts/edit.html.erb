@@ -1,7 +1,14 @@
-<%= form_for @imgpost do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title, :size => 100 %>
-  <%= f.label :body %>
-  <%= f.text_field :body, :size => 140 %>
-  <%= f.submit "編集する" %>
-<% end %>
+<form class="p-5">
+  <h1 class="edit-title">編集ページ</h1>
+  <%= form_for @imgpost do |f| %>
+  <div class="form-group">
+    <label for="exampleInputEmail1"><%= f.label :"タイトル" %></label>
+    <%= f.text_field :title, class: "form-control" , placeholder: "タイトルを入力してください" %>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1"><%= f.label :"投稿内容" %></label>
+    <%= f.text_field :body, class: "form-control" , placeholder: "投稿内容を入力してください" %>
+  </div>
+  <button type="submit" class="btn btn-primary">編集する</button>
+  <% end %>
+</form>

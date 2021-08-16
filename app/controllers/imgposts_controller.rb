@@ -34,6 +34,7 @@ class ImgpostsController < ApplicationController
 
   def edit
     @imgpost = Imgpost.find(params[:id])
+    redirect_to imgposts_path unless current_user.id == @imgpost.user_id
   end
 
   def update

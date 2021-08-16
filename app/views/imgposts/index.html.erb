@@ -33,10 +33,10 @@
   <p class="text-center"><%= link_to "新規投稿ページへ", new_imgpost_path, class: 'btn btn-primary' %></p>
 
 
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <% @imgposts.each do |t| %>
-        <div class="text-center col-sm-4 col-md-6">
+        <div class="text-center col-md-6">
           <div class="card mx-auto mb-5" style="width: 18rem;">
             <%# 画像部分 %>
             <%= image_tag t.image_url, class: "card-img-top imgpost-image" if t.image? %>
