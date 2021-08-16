@@ -4,9 +4,9 @@ class ImgpostsController < ApplicationController
 
   def index
     if params[:search] == nil
-      @imgposts = Imgpost.all
+      @imgposts = Imgpost.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
     elsif params[:search] == ''
-      @imgposts = Imgpost.all
+      @imgposts = Imgpost.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
     else
       @imgposts = Imgpost.where("body LIKE ? ", '%' + params[:search] + '%')
     end
