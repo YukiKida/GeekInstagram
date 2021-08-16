@@ -47,6 +47,9 @@
               <%# 投稿内容部分 %>
               <p class="card-text"><%= t.body %></p>
 
+              <%# 投稿者のユーザーページ部分 %>
+              <p class="card-text"><a href="/users/<%= t.user_id %>" class="btn btn-link">ユーザーページ</a></p>
+
               <%# いいね部分 %>
               <% if user_signed_in? %>
                 <% if current_user.already_liked?(t) %>
